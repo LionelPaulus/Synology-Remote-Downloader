@@ -60,19 +60,34 @@ if (startDownloadButton) {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'api/listCurrentDownloads', true);
         xhr.onload = function () {
+            // Add and update downloads
             var currentDownloads = JSON.parse(this.responseText);
             for (var i = 0; i < currentDownloads.length; i++) {
                 var downloadCard = document.querySelector('#' + currentDownloads[i].id);
                 if (downloadCard) {
-                    downloadCard.querySelector('.mdl-progress').MaterialProgress.setProgress(currentDownloads[i].percentage);
-                    let downloadCardTitle = downloadCard.querySelector('p').innerHTML;
+                    downloadCard.querySelector('.progressbar').style.width = currentDownloads[i].percentage + '%';
+                    var downloadCardTitle = downloadCard.querySelector('p').innerHTML;
                     if (downloadCardTitle != currentDownloads[i].title) {
                         downloadCardTitle = currentDownloads[i].title;
                     }
                 } else {
                     downloadsContainer.innerHTML += '<div id="' + currentDownloads[i].id + '" class="download downloadCard mdl-card mdl-shadow--2dp"><div class="mdl-progress mdl-js-progress"></div><div class="mdl-card__title"><p>' + currentDownloads[i].title +'</p></div></div>';
                     window.componentHandler.upgradeDom();
-                    document.querySelector('#' + currentDownloads[i].id + ' .mdl-progress').MaterialProgress.setProgress(currentDownloads[i].percentage);
+                    document.querySelector('#' + currentDownloads[i].id + ' .progressbar').style.width = currentDownloads[i].percentage + '%';
+                }
+            }
+
+            // Remove finished downloads
+            var currentDownloadsCards = downloadsContainer.querySelectorAll('.downloadCard');
+            for (var i = 0; i < currentDownloadsCards.length; i++) {
+                var stillDownloading = false;
+                for (var j = 0; j < currentDownloads.length; j++) {
+                    if (currentDownloadsCards[i].id == currentDownloads[j].id) {
+                        stillDownloading = true;
+                    }
+                }
+                if (!stillDownloading) {
+                    currentDownloadsCards[i].remove();
                 }
             }
         };
