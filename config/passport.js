@@ -28,15 +28,13 @@ passport.use(new GoogleStrategy({
     user.profile.name = profile.name.givenName;
     user.profile.gender = profile._json.gender;
     user.profile.picture = profile._json.image.url;
-    fs.readFile(__dirname + '/authorized_emails.json', (err, data) => {
-        if (err) throw err;
-        if (data.includes(user.email)) {
-            done(null, user);
-        } else {
-            console.log(user.email + ' REFUSED');
-            done('Your email address is not authorized. Please try with your personal Google one.', null);
-        }
-    });
+    let authorized_emails = process.env.AUTHORIZED_EMAILS.split(',');
+    if (authorized_emails.includes(user.email)) {
+        done(null, user);
+    } else {
+        console.log(user.email + ' REFUSED');
+        done('Your email address is not authorized. Please try with your personal Google one.', null);
+    };
 }));
 
 /**

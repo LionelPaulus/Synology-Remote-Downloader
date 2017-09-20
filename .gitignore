@@ -30,6 +30,3 @@ bower_components
 # OS metadata
 .DS_Store
 Thumbs.db
-
-# Authorized email address
-config/authorized_emails.json
