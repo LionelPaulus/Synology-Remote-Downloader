@@ -41,8 +41,7 @@ exports.list = (req, res) => {
         }
 
         for (let i = 0; i < listResponse.tasks.length; i++) {
-            listResponse.tasks[i]
-            if ((listResponse.tasks[i].additional.detail.completed_time == 0)&&(listResponse.tasks[i].status == 'downloading')) {
+            if ((listResponse.tasks[i].additional.detail.completed_time == 0) && ((listResponse.tasks[i].status == 'downloading') || (listResponse.tasks[i].status == 'waiting'))) {
                 let percentage = 100 * listResponse.tasks[i].additional.transfer.size_downloaded / listResponse.tasks[i].size;
                 if (isNaN(percentage)) {
                     percentage = 0;

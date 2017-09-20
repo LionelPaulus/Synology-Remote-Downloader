@@ -64,16 +64,20 @@ if (startDownloadButton) {
             for (var i = 0; i < currentDownloads.length; i++) {
                 var downloadCard = document.querySelector('#' + currentDownloads[i].id);
                 if (downloadCard) {
-                    downloadCard.MaterialProgress.setProgress(currentDownloads[i].percentage);
+                    downloadCard.querySelector('.mdl-progress').MaterialProgress.setProgress(currentDownloads[i].percentage);
+                    let downloadCardTitle = downloadCard.querySelector('p').innerHTML;
+                    if (downloadCardTitle != currentDownloads[i].title) {
+                        downloadCardTitle = currentDownloads[i].title;
+                    }
                 } else {
-                    downloadsContainer.innerHTML += '<div class="download downloadCard mdl-card mdl-shadow--2dp"><div id="' + currentDownloads[i].id + '" class="mdl-progress mdl-js-progress"></div><div class="mdl-card__title"><p>' + currentDownloads[i].title +'</p></div></div>';
+                    downloadsContainer.innerHTML += '<div id="' + currentDownloads[i].id + '" class="download downloadCard mdl-card mdl-shadow--2dp"><div class="mdl-progress mdl-js-progress"></div><div class="mdl-card__title"><p>' + currentDownloads[i].title +'</p></div></div>';
                     window.componentHandler.upgradeDom();
-                    document.querySelector('#' + currentDownloads[i].id).MaterialProgress.setProgress(currentDownloads[i].percentage);
+                    document.querySelector('#' + currentDownloads[i].id + ' .mdl-progress').MaterialProgress.setProgress(currentDownloads[i].percentage);
                 }
             }
         };
         xhr.send();
     }
-    
+
     window.setInterval(listCurrentDownloads, 5000);
 }
