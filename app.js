@@ -15,6 +15,7 @@ const sass = require('node-sass-middleware');
 const hbs = require('express-handlebars');
 const passport = require('passport');
 const expressValidator = require('express-validator');
+const bugsnag = require("bugsnag");
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -32,6 +33,12 @@ const dashboardController = require('./controllers/dashboard');
  * Create Express server.
  */
 const app = express();
+
+/**
+ * Error monitoring
+ */
+bugsnag.register(process.env.BUGSNAG_API_KEY, { notifyReleaseStages: ["production"] });
+app.use(bugsnag.requestHandler);
 
 /**
  * Passport config.
@@ -88,6 +95,7 @@ app.get('/api/listCurrentDownloads', passportConfig.isAuthenticated, downloads.l
 /**
  * Error Handler.
  */
+app.use(bugsnag.errorHandler);
 app.use(errorHandler());
 
 /**

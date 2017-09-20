@@ -12,6 +12,7 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
+    "bugsnag": "^1.12.2",
     "chalk": "^2.1.0",
     "cheerio": "^1.0.0-rc.2",
     "compression": "^1.7.0",
