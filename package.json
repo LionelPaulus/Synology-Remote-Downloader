@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
+  "engines": {
+    "node": "8.5.0"
+  },
   "scripts": {
     "start": "node app.js",
     "test": "mocha --reporter spec",
