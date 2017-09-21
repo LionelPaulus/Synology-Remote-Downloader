@@ -59,9 +59,17 @@ if (startDownloadButton) {
     function listCurrentDownloads(){
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'api/listCurrentDownloads', true);
+        xhr.timeout = 7000;
         xhr.onload = function () {
+            // Catch error
+            try {
+                var currentDownloads = JSON.parse(this.responseText);
+            } catch (e) {
+                NASProblem();
+                return;
+            }
+
             // Add and update downloads
-            var currentDownloads = JSON.parse(this.responseText);
             for (var i = 0; i < currentDownloads.length; i++) {
                 var downloadCard = document.querySelector('#' + currentDownloads[i].id);
                 if (downloadCard) {
@@ -90,9 +98,24 @@ if (startDownloadButton) {
                     currentDownloadsCards[i].remove();
                 }
             }
+
+            // Make another AJAX call after 5 seconds
+            setTimeout(function(){
+                listCurrentDownloads();
+            }, 2000);
+        };
+        xhr.ontimeout = function(e) {
+            NASProblem();
+            console.log('Error: ' + e);
         };
         xhr.send();
     }
 
-    window.setInterval(listCurrentDownloads, 5000);
+    function NASProblem() {
+        var dialog = document.querySelector('#nas-problem');
+        if (!dialog.showModal) {
+            dialogPolyfill.registerDialog(dialog);
+        }
+        dialog.showModal();
+    }
 }
