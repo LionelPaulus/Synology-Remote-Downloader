@@ -74,9 +74,9 @@ if (startDownloadButton) {
                 var downloadCard = document.querySelector('#' + currentDownloads[i].id);
                 if (downloadCard) {
                     downloadCard.querySelector('.progressbar').style.width = currentDownloads[i].percentage + '%';
-                    var downloadCardTitle = downloadCard.querySelector('p').innerHTML;
-                    if (downloadCardTitle != currentDownloads[i].title) {
-                        downloadCardTitle = currentDownloads[i].title;
+                    var downloadCardTitle = downloadCard.querySelector('p');
+                    if (downloadCardTitle.innerText != currentDownloads[i].title) {
+                        downloadCardTitle.innerText = currentDownloads[i].title;
                     }
                 } else {
                     downloadsContainer.innerHTML += '<div id="' + currentDownloads[i].id + '" class="download downloadCard mdl-card mdl-shadow--2dp"><div class="mdl-progress mdl-js-progress"></div><div class="mdl-card__title"><p>' + currentDownloads[i].title +'</p></div></div>';
