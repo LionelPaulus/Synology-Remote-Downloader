@@ -4,7 +4,8 @@
   "description": "",
   "license": "ISC",
   "engines": {
-    "node": "8.5.0"
+    "node": "8.5.0",
+    "npm": "5.2.0"
   },
   "scripts": {
     "start": "node app.js",
