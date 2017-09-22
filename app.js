@@ -43,6 +43,9 @@ bugsnag.register(process.env.BUGSNAG_API_KEY, {
     notifyReleaseStages: ["production"]
 });
 app.use(bugsnag.requestHandler);
+app.locals = {
+    releaseStage: process.env.BUGSNAG_RELEASE_STAGE
+};
 timber.config.append_metadata = true;
 
 /**
