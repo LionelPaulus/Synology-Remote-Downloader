@@ -102,7 +102,7 @@ if (startDownloadButton) {
             // Make another AJAX call after 5 seconds
             setTimeout(function(){
                 listCurrentDownloads();
-            }, 2000);
+            }, 5000);
         };
         xhr.ontimeout = function(e) {
             NASProblem();
