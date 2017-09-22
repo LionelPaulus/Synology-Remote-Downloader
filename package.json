@@ -33,6 +33,7 @@
     "passport-oauth": "^1.0.0",
     "request": "^2.81.0",
     "syno": "^2.1.0",
+    "timber": "^3.0.1",
     "validator": "^8.2.0"
   },
   "devDependencies": {

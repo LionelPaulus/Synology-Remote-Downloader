@@ -16,6 +16,7 @@ const hbs = require('express-handlebars');
 const passport = require('passport');
 const expressValidator = require('express-validator');
 const bugsnag = require("bugsnag");
+const timber = require('timber');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -35,10 +36,14 @@ const dashboardController = require('./controllers/dashboard');
 const app = express();
 
 /**
- * Error monitoring
+ * Error and log monitoring
  */
-bugsnag.register(process.env.BUGSNAG_API_KEY, { notifyReleaseStages: ["production"] });
+bugsnag.register(process.env.BUGSNAG_API_KEY, {
+    releaseStage: process.env.BUGSNAG_RELEASE_STAGE,
+    notifyReleaseStages: ["production"]
+});
 app.use(bugsnag.requestHandler);
+timber.config.append_metadata = true;
 
 /**
  * Passport config.
@@ -71,6 +76,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
+app.use(timber.middlewares.express())
 
 /**
  * App routes.
