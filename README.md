@@ -1,7 +1,7 @@
 # Synology Remote Downloader
-Remotely start download tasks from the web to your Synology NAS.
-Give access to your family or friends while keeping control (which download destinations, which URL's,...).
-🔒 Secured by Google Sign in authentification.
+Remotely start download tasks from the web to your Synology NAS.   
+Give access to your family or friends while keeping control (which download destinations, which URL's,...).  
+🔒 Secured by Google Sign in authentification.  
 
 ![App screenshot](https://monosnap.com/file/M7D2OkFuizXuf0sD2nkQDcaVIBjYq7.png)
 ## Use case
