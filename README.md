@@ -27,7 +27,7 @@ node app.js
 ```
 
 ## Link with Plex or KODI
-If your Synology is linked to a Media Server like Plex or KODI and if you set the download destinations in your `.env` file accordingly to the one used by your Media Server, then downloads will be automatically added to your Media Server library. That's magic!
+If your Synology is linked to a Media Server like Plex or KODI and if you set the download destinations in your `.env` file accordingly to the one used by your Media Server, then downloads will be automatically added to your Media Server library. As if by magic!
 
 ## Contributions welcomed!
 Don't hesitate if you have any questions or a desire to contribute :)
