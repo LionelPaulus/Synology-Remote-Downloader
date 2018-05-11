@@ -20,7 +20,13 @@ exports.start = (req, res) => {
         return res.send(errors);
     }
 
-    syno.dl.createTask({'uri': req.body.link, 'destination': req.body.destination}, function(createError, createResponse) {
+    if (req.body.destination === 'movie') {
+        var destination = process.env.MOVIES_FOLDER;
+    } else {
+        var destination = process.env.TV_SHOWS_FOLDER;
+    }
+
+    syno.dl.createTask({'uri': req.body.link, 'destination': destination}, function(createError, createResponse) {
         if (createError) {
             res.send('Error: ' + createError);
             return;

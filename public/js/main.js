@@ -22,14 +22,16 @@ if (startDownloadButton) {
         var movie = startDownloadForm.querySelector('.movie');
         var tvshow = startDownloadForm.querySelector('.tvshow');
 
-        var linkValidation = /^(http|https)?:\/\/uptobox.com\/[a-zA-Z0-9]{12}/.test(link.value);
-        if ((linkValidation) && (movie.checked) || (tvshow.checked)) {
+        // If you need to validate the download link, you can use a regex like this:
+        //var linkValidation = /^(http|https)?:\/\/uptobox.com\/[a-zA-Z0-9]{12}/.test(link.value);
+
+        if ((movie.checked) || (tvshow.checked)) {
             loading(startDonwnloadCard, true);
 
             if (movie.checked) {
-                var destination = 'SynologyPaulus/Films';
+                var destination = 'movie';
             } else {
-                var destination = 'SynologyPaulus/Séries TV';
+                var destination = 'tv show';
             }
 
             var data = {
@@ -44,12 +46,12 @@ if (startDownloadButton) {
                 if (this.responseText == '1') {
                     loading(startDonwnloadCard, false);
                     link.value = "";
-                    var data = {message: 'The download task has been added!'};
-                    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                    var snackbar = {message: 'The download task has been added!'};
+                    snackbarContainer.MaterialSnackbar.showSnackbar(snackbar);
                 } else {
                     loading(startDonwnloadCard, false);
-                    var data = {message: 'Sorry, it didn\'t work :( Please try again or contact my master, Lionel.'};
-                    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                    var snackbar = {message: 'Sorry, it didn\'t work :( Please try again or contact my master.'};
+                    snackbarContainer.MaterialSnackbar.showSnackbar(snackbar);
                 }
             };
             xhr.send(JSON.stringify(data));

@@ -1,8 +1,8 @@
 {
-  "name": "plex-dashboard",
+  "name": "synology-remote-downloader",
   "version": "1.0.0",
   "description": "",
-  "license": "ISC",
+  "license": "MIT",
   "engines": {
     "node": "8.5.0",
     "npm": "5.2.0"
@@ -14,11 +14,8 @@
     "eslint": "eslint **/*.js"
   },
   "dependencies": {
-    "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
-    "bugsnag": "^1.12.2",
     "chalk": "^2.4.0",
-    "cheerio": "^1.0.0-rc.2",
     "compression": "^1.7.2",
     "dotenv": "^4.0.0",
     "errorhandler": "^1.5.0",
@@ -32,9 +29,7 @@
     "passport": "^0.4.0",
     "passport-google-oauth": "^1.0.0",
     "passport-oauth": "^1.0.0",
-    "request": "^2.85.0",
-    "syno": "^2.1.0",
-    "validator": "^8.2.0"
+    "syno": "^2.1.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
@@ -42,8 +37,7 @@
     "eslint-config-airbnb-base": "^11.3.1",
     "eslint-plugin-chai-friendly": "^0.4.1",
     "eslint-plugin-import": "^2.11.0",
-    "mocha": "^3.5.3",
-    "supertest": "^3.0.0"
+    "mocha": "^3.5.3"
   },
   "eslintConfig": {
     "extends": "airbnb-base",
