@@ -17,14 +17,12 @@
                         <h2 class="mdl-card__title-text">Download a movie or TV show</h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                        <p>Did you find a download link for a great movie or TV show? Wonderful, let's add it to our collection!</p>
+                        <p>Did you find an Uptobox link to download a great movie or TV show ? Wonderful, let's put this on Plex!</p>
                         <form name="startDownloadForm" id="startDownloadForm">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <!-- If you need to validate the download link, you can use a regex like this: -->
-                                <!--input class="mdl-textfield__input" type="text" pattern="^(http|https)?:\/\/uptobox.com\/[a-zA-Z0-9]{12}" id="link"-->
-                                <input class="mdl-textfield__input" type="text" id="link">
-                                <label class="mdl-textfield__label" for="link">Download link...</label>
-                                <!--span class="mdl-textfield__error">Should be http://uptobox.com/xxxxxxxxxxxx</span-->
+                                <input class="mdl-textfield__input" type="text" pattern="^(http|https)?:\/\/uptobox.com\/[a-zA-Z0-9]{12}" id="link">
+                                <label class="mdl-textfield__label" for="link">Uptobox link...</label>
+                                <span class="mdl-textfield__error">Should be http://uptobox.com/xxxxxxxxxxxx</span>
                             </div>
                             <div class="download-radio">
                                 <div class="mdl-cell mdl-cell--6-col">
@@ -62,4 +60,9 @@
         </p>
     </div>
 </dialog>
+<script>
+    Bugsnag.user = {
+        name: '{{user.profile.name}}'
+    };
+</script>
 {{> footer}}

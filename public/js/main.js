@@ -22,10 +22,8 @@ if (startDownloadButton) {
         var movie = startDownloadForm.querySelector('.movie');
         var tvshow = startDownloadForm.querySelector('.tvshow');
 
-        // If you need to validate the download link, you can use a regex like this:
-        //var linkValidation = /^(http|https)?:\/\/uptobox.com\/[a-zA-Z0-9]{12}/.test(link.value);
-
-        if ((movie.checked) || (tvshow.checked)) {
+        var linkValidation = /^(http|https)?:\/\/uptobox.com\/[a-zA-Z0-9]{12}/.test(link.value);
+        if ((linkValidation) && (movie.checked) || (tvshow.checked)) {
             loading(startDonwnloadCard, true);
 
             if (movie.checked) {
@@ -50,7 +48,7 @@ if (startDownloadButton) {
                     snackbarContainer.MaterialSnackbar.showSnackbar(snackbar);
                 } else {
                     loading(startDonwnloadCard, false);
-                    var snackbar = {message: 'Sorry, it didn\'t work :( Please try again or contact my master.'};
+                    var snackbar = {message: 'Sorry, it didn\'t work :( Please try again or contact my master, Lionel.'};
                     snackbarContainer.MaterialSnackbar.showSnackbar(snackbar);
                 }
             };
